@@ -3807,6 +3807,11 @@ def k3sCluster():
             "kubectl create configmap coredns-custom -n kube-system " +
             "--from-literal='rewritehost.override=rewrite name exact %s host.k3d.internal'" % OCIS_SERVER_NAME,
             "kubectl -n kube-system rollout restart deployment coredns",
+            # Setup Unicode font support for thumbnails - create ConfigMaps
+            "kubectl create namespace ocis || true",
+            "echo '{\"defaultFont\": \"/etc/ocis/fonts/NotoSans.ttf\"}' > %s/fontsMap-k8s.json" % dirs["base"],
+            "kubectl create configmap -n ocis ocis-fonts-ttf --from-file=%s/tests/config/drone/NotoSans.ttf" % dirs["base"],
+            "kubectl create configmap -n ocis ocis-fonts-map --from-file=%s/fontsMap-k8s.json" % dirs["base"],
             # watch events
             "kubectl get events -Aw",
         ],
