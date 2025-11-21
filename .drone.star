@@ -376,7 +376,7 @@ config = {
                 "coreApiWebdavUploadTUS",
             ],
             "skip": False,
-            # "k8s": True,
+            "k8s": True,
         },
     },
     "e2eTests": {
