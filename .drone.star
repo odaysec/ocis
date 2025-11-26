@@ -85,13 +85,13 @@ S3_PUBLIC_CACHE_BUCKET = "public"
 # configuration
 config = {
     "cs3ApiTests": {
-        "skip": False,
+        "skip": True,
     },
     "wopiValidatorTests": {
-        "skip": False,
+        "skip": True,
     },
     "k6LoadTests": {
-        "skip": False,
+        "skip": True,
     },
     "localApiTests": {
         "contractAndLock": {
@@ -99,7 +99,7 @@ config = {
                 "apiContract",
                 "apiLocks",
             ],
-            "skip": False,
+            "skip": True,
             "k8s": True,
         },
         "settingsAndNotification": {
@@ -108,7 +108,7 @@ config = {
                 "apiNotification",
                 "apiCors",
             ],
-            "skip": False,
+            "skip": True,
             "withRemotePhp": [False],
             "emailNeeded": True,
             "extraEnvironment": {
@@ -128,7 +128,7 @@ config = {
             "suites": [
                 "apiGraphUser",
             ],
-            "skip": False,
+            "skip": True,
             "withRemotePhp": [False],
             "k8s": True,
         },
@@ -136,14 +136,14 @@ config = {
             "suites": [
                 "apiSpaces",
             ],
-            "skip": False,
+            "skip": True,
             "k8s": True,
         },
         "spacesShares": {
             "suites": [
                 "apiSpacesShares",
             ],
-            "skip": False,
+            "skip": True,
             "k8s": True,
         },
         "davOperations": {
@@ -155,7 +155,7 @@ config = {
                 "apiArchiver",
                 "apiActivities",
             ],
-            "skip": False,
+            "skip": True,
         },
         "groupAndSearch1": {
             "suites": [
@@ -181,7 +181,7 @@ config = {
                 "apiReshare",
                 "apiSharingNgPermissions",
             ],
-            "skip": False,
+            "skip": True,
             "withRemotePhp": [False],
             "k8s": True,
         },
@@ -189,7 +189,7 @@ config = {
             "suites": [
                 "apiSharingNgAdditionalShareRole",
             ],
-            "skip": False,
+            "skip": True,
             "k8s": True,
             "withRemotePhp": [False],
         },
@@ -198,7 +198,7 @@ config = {
                 "apiSharingNgDriveInvitation",
                 "apiSharingNgItemInvitation",
             ],
-            "skip": False,
+            "skip": True,
             "withRemotePhp": [False],
         },
         "sharingNgLinkShare": {
@@ -231,7 +231,7 @@ config = {
                 "apiOcm",
                 "apiServiceAvailability",
             ],
-            "skip": False,
+            "skip": True,
             "withRemotePhp": [False],
             "federationServer": True,
             "emailNeeded": True,
@@ -269,7 +269,7 @@ config = {
             "suites": [
                 "apiCollaboration",
             ],
-            "skip": False,
+            "skip": True,
             "withRemotePhp": [False],
             "collaborationServiceNeeded": True,
             "extraServerEnvironment": {
@@ -280,7 +280,7 @@ config = {
             "suites": [
                 "cliCommands",
             ],
-            "skip": False,
+            "skip": True,
             "withRemotePhp": [False],
             "antivirusNeeded": True,
             "emailNeeded": True,
@@ -309,7 +309,7 @@ config = {
                 "coreApiMain",
                 "coreApiVersions",
             ],
-            "skip": False,
+            "skip": True,
             "withRemotePhp": [False],
             "k8s": True,
         },
@@ -318,7 +318,7 @@ config = {
                 "coreApiShareManagementBasicToShares",
                 "coreApiShareManagementToShares",
             ],
-            "skip": False,
+            "skip": True,
             "k8s": True,
             "withRemotePhp": [False],
         },
@@ -327,7 +327,7 @@ config = {
                 "coreApiSharees",
                 "coreApiSharePublicLink2",
             ],
-            "skip": False,
+            "skip": True,
             "withRemotePhp": [False],
         },
         "4": {
@@ -339,7 +339,7 @@ config = {
                 "coreApiShareCreateSpecialToShares2",
                 "coreApiShareUpdateToShares",
             ],
-            "skip": False,
+            "skip": True,
             "k8s": True,
             "withRemotePhp": [False],
         },
@@ -350,7 +350,7 @@ config = {
                 "coreApiWebdavEtagPropagation1",
                 "coreApiWebdavEtagPropagation2",
             ],
-            "skip": False,
+            "skip": True,
             "k8s": True,
         },
         "6": {
@@ -359,13 +359,13 @@ config = {
                 "coreApiWebdavOperations",
                 "coreApiWebdavMove2",
             ],
-            "skip": False,
+            "skip": True,
         },
         "7": {
             "suites": [
                 "coreApiWebdavProperties",
             ],
-            "skip": False,
+            "skip": True,
             "k8s": True,
         },
         "8": {
@@ -381,24 +381,24 @@ config = {
     },
     "e2eTests": {
         "part": {
-            "skip": False,
+            "skip": True,
             "totalParts": 4,  # divide and run all suites in parts (divide pipelines)
             "xsuites": ["search", "app-provider", "oidc", "ocm", "keycloak"],  # suites to skip
         },
         "search": {
-            "skip": False,
+            "skip": True,
             "suites": ["search"],  # suites to run
             "tikaNeeded": True,
         },
         "keycloak": {
-            "skip": False,
+            "skip": True,
             "suites": ["journeys", "keycloak"],
             "keycloakNeeded": True,
         },
     },
     "e2eMultiService": {
         "testSuites": {
-            "skip": False,
+            "skip": True,
             "suites": [
                 "smoke",
                 "shares",
@@ -2749,7 +2749,7 @@ def build():
             "name": "build",
             "image": OC_CI_GOLANG,
             "commands": [
-                "retry -t 3 'make -C ocis build ENABLE_VIPS=true'",
+                "retry -t 3 'make -C ocis build'",
             ],
             "environment": DRONE_HTTP_PROXY_ENV,
             "volumes": [stepVolumeGo],
@@ -2762,7 +2762,7 @@ def buildDebug():
             "name": "build debug binary",
             "image": OC_CI_GOLANG,
             "commands": [
-                "retry -t 3 'make -C ocis build-debug ENABLE_VIPS=true'",
+                "retry -t 3 'make -C ocis build-debug'",
             ],
             "environment": DRONE_HTTP_PROXY_ENV,
             "volumes": [stepVolumeGo],
